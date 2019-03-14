@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>BOT - Social Media & Content Lab</title>
+	<link href="assets/stylesheets/screen.css" rel="stylesheet">
+	<link href="assets/css/unsemantic-grid-responsive-tablet.css" rel="stylesheet">
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body>
+	<header>
+		<div class="grid-100 grid-parent">
+			<div class="grid-container">
+				<div class="huincha-roja" onclick="void(0)">
+					<div class="grupo">
+						<a href="http://cronstudio.com" target="_blank">
+							<img src="assets/svg/icon-cron.svg">
+						</a>
+						<a href="http://www.bot.cl" target="_blank">
+							<img src="assets/svg/icon-bot.svg">
+						<a href="http://www.ideatopia.cl" target="_blank">
+							<img src="assets/svg/icon-ideatopia.svg">
+						</a>
+					</div>
+					GRUPO
+					<span>+</span>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="fullscreen background">
+		<div class="content-a">
+			<div class="content-b">
+				<div class="caja-logo">
+					<img src="assets/svg/logo.svg">
+				</div>
+				<div class="rrss">
+					<a href="https://www.facebook.com/botdigital" target="_blank">
+						<i class="fa fa-facebook-square" aria-hidden="true"></i> /botdigital
+					</a>
+					<a href="https://www.instagram.com/botdigital" target="_blank">
+						<i class="fa fa-instagram" aria-hidden="true"></i> /botdigital
+					</a>
+					<a href="mailto:hola@bot.cl">
+						<i class="fa fa-envelope-open-o" aria-hidden="true"></i> hola@bot.cl
+					</a>
+				</div>
+				<footer>
+					<div class="grid-100 grid-parent">
+						<a href="http://fluid.cl" target="_blank">
+							<img src="assets/svg/logo-fluid.svg">
+						</a>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</div>
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	<script src="assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+	<script>
+		function fullscreenFix(){
+			var h = $('body').height();
+			$(".content-b").each(function(i){
+				if($(this).innerHeight() > h){ $(this).closest(".fullscreen").addClass("overflow");
+				}
+			});
+		}
+		$(window).resize(fullscreenFix);
+		fullscreenFix();
+		function backgroundResize(){
+			var windowH = $(window).height();
+			$(".background").each(function(i){
+				var path = $(this);
+				var contW = path.width();
+				var contH = path.height();
+				var imgW = path.attr("data-img-width");
+				var imgH = path.attr("data-img-height");
+				var ratio = imgW / imgH;
+				var diff = parseFloat(path.attr("data-diff"));
+				diff = diff ? diff : 0;
+				var remainingH = 0;
+				if(path.hasClass("parallax")){
+					var maxH = contH > windowH ? contH : windowH;
+					remainingH = windowH - contH;
+				}
+				imgH = contH + remainingH + diff;
+				imgW = imgH * ratio;
+				if(contW > imgW){
+					imgW = contW;
+					imgH = imgW / ratio;
+				}
+				path.data("resized-imgW", imgW);
+				path.data("resized-imgH", imgH);
+				path.css("background-size", imgW + "px " + imgH + "px");
+			});
+		}
+		$(window).resize(backgroundResize);
+		$(window).focus(backgroundResize);
+		backgroundResize();
+		(function(l){var i,s={touchend:function(){}};for(i in s)l.addEventListener(i,s)})(document); // unhover iOS
+	</script>
+</body>
